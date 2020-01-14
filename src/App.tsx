@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import Hello from './page/component/Hello'
+import { Button } from 'antd';
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         >
           Learn React
         </a>
+        <Button type="primary">Button</Button>
       </header>
     </div>
   );
