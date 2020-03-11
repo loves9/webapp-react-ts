@@ -6,7 +6,7 @@
     "start": "react-app-rewired start",
     "dev": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "build:production": "react-app-rewired build --mode production",
+    "build:release": "react-app-rewired build --env=release",
     "test": "react-app-rewired test"
   },
   "dependencies": {
