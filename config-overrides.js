@@ -6,6 +6,7 @@ const {
   addWebpackAlias
 } = require("customize-cra");
 const path = require("path");
+const fse = require("fs-extra");
 
 // module.exports = override(
 //   fixBabelImports("import", {
@@ -52,6 +53,24 @@ const path = require("path");
 //   }
 // );
 
+let copyConfig = function({ origin, target }) {
+  return new Promise((resolve, reject) => {
+    try {
+      fse.copySync(
+        path.join(origin, "plugin.properties"),
+        path.join(target, "plugin.properties")
+      );
+      fse.copySync(
+        path.join(origin, "config.properties"),
+        path.join(target, "www", "config.properties")
+      );
+      resolve("successfully");
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
 module.exports = {
   webpack: override(
     fixBabelImports("import", {
@@ -78,6 +97,17 @@ module.exports = {
           path.dirname(config.output.path),
           "dist/www"
         );
+
+        // TODO: 延时拷贝可能有风险
+        // setTimeout(() => {
+        //   copyConfig({
+        //     origin: process.cwd(),
+        //     target: path.join(process.cwd(), "dist")
+        //   }).then(e => {
+        //     console.log("copyConfig：", e);
+        //   });
+        // }, 3000);
+
       } else if (process.env.NODE_ENV === "development") {
         // config.devServer = {
         //   port: 8080 || process.env.PORT
