@@ -21,6 +21,8 @@
     "antd": "^3.26.7",
     "babel-plugin-import": "^1.13.0",
     "customize-cra": "^0.9.1",
+    "framework7": "^5.5.0",
+    "framework7-react": "^5.5.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "react": "^16.12.0",
