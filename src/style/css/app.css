@@ -1,0 +1,135 @@
+/* Your app styles here */
+:root {
+  --f7-theme-color: #298ccf;
+  --f7-color-red: #EF5350;
+  --f7-bars-border-color: rgba(238, 238, 238, 1);
+  /* --f7-theme-color-tint: #298ccf; */
+
+  /* Preloader */
+  --f7-preloader-modal-padding: 25px;
+
+  /* Button */
+  --f7-button-border-radius: 1px;
+  --f7-button-height: 52px;
+  --f7-button-font-size: 16px;
+  --f7-button-bg-color: #ffffff;
+  --f7-button-font-weight: 600;
+
+  /* Dialog */
+  --f7-dialog-font-size: 16px;
+  --f7-dialog-text-color: rgba(38, 38, 38, 1);
+  --f7-dialog-border-radius: 10px;
+
+  /* List Item */
+  --f7-list-item-title-font-size: 16px;
+  --f7-list-item-title-font-weight: 400;
+  --f7-list-item-title-text-color: #333333;
+
+  /* Inputs/Form Inputs */
+  --f7-input-outline-height: 30px;
+  --f7-input-outline-border-color: #C0C4CC;
+
+  /* Skeleton */
+  --f7-skeleton-color: #ccc;
+
+  /* Picker */
+  
+  /* --f7-picker-item-height: 48px; */
+
+}
+
+.ios {
+  /* ActionSheet */
+  --f7-actions-bg-color: rgba(255, 255, 255, 0.95);
+  --f7-actions-border-radius: 0px;
+  /* --f7-actions-button-border-color: transparent; */
+  --f7-actions-button-text-color: rgba(0, 0, 0, 0.87);
+  --f7-actions-button-pressed-bg-color: #e5e5e5;
+  --f7-actions-button-padding: 0 16px;
+  --f7-actions-button-text-align: center;
+  --f7-actions-button-height: 52px;
+  --f7-actions-button-height-landscape: 52px;
+  --f7-actions-button-font-size: 16px;
+  --f7-actions-button-icon-size: 24px;
+  --f7-actions-button-justify-content: center;
+  --f7-actions-label-padding: 12px 16px;
+  --f7-actions-label-text-color: rgba(0, 0, 0, 0.54);
+  --f7-actions-label-font-size: 16px;
+  --f7-actions-group-border-color: #d2d2d6;
+  --f7-actions-group-margin: 0px 0px 0px 0px;
+  --f7-actions-grid-button-icon-size: 48px;
+
+  /* Page */
+  --f7-page-bg-color: rgba(238, 238, 238, 1);
+
+  /* Toast */
+  --f7-toast-bg-color: rgba(0, 0, 0, 0.65);
+  --f7-toast-translucent-bg-color-ios: rgba(0, 0, 0, 0.65);
+  --f7-toast-padding-horizontal: 22px;
+  --f7-toast-padding-vertical: 15px;
+
+  /* List View */
+  --f7-list-margin-vertical: 0px;
+  --f7-list-item-min-height: 52px;
+
+  /* Inputs/Form Inputs */
+  --f7-input-text-color: #666666;
+  --f7-label-text-color: #333333;
+  --f7-input-font-size: 16px;
+  --f7-inline-label-font-size: 16px;
+  --f7-input-height: 48px;
+
+  --f7-input-outline-height: 30px;
+  --f7-input-outline-border-color: #C0C4CC;
+
+  /* Picker */
+  --f7-picker-column-font-size: 16px;
+  --f7-picker-item-selected-text-color: #333333;
+  --f7-picker-item-text-color: rgba(175, 175, 175, 1);
+  --f7-picker-divider-text-color: #EF5350;
+  --f7-picker-item-selected-border-color: rgba(238, 238, 238, 1);
+
+  /* Sheet Modal */
+  --f7-sheet-bg-color: rgba(255, 255, 255, 1);
+  --f7-sheet-border-color: transparent;
+
+  /* Grid */
+  --f7-grid-gap: 1px;
+  
+}
+
+.navbar {
+  background-color: #298ccf;
+  color: #ffffff;
+}
+
+.color-red {
+  --f7-theme-color: #EF5350;
+}
+
+.input-dropdown-wrap:before, .input-dropdown:before {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+
+.actions-modal {
+  background-color: rgba(234, 234, 234, 1);
+}
+
+.actions-group + .actions-group {
+  margin-top: 6px;
+}
+
+.picker {
+  background-color: #ffffff;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.dialog-text {
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
