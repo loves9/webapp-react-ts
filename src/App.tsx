@@ -23,8 +23,7 @@ const f7params = {
   // App routes
   view: {
     stackPages: true,
-    // pushState: true,
-    // pushStateRoot: '/',
+    pushState: true
     // pushStateSeparator: ""
   }
 };
@@ -49,7 +48,7 @@ class ReactApp extends React.Component {
     return (
       <App params={f7params}>
         {/* initial page is specified in routes.js */}
-        <View main url="/">
+        <View main url="/" className="safe-areas">
           {/* <HomeScreen></HomeScreen> */}
         </View>
       </App>

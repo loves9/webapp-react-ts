@@ -62,18 +62,18 @@ export default {
    *
    * @param {*} callBack 回调函数
    */
-  // setDeviceReady(callBack) {
-  //   document.addEventListener("deviceready", onDeviceReady, false); // 等待cordova加载
+  setDeviceReady(callBack) {
+    document.addEventListener("deviceready", onDeviceReady, false); // 等待cordova加载
 
-  //   function onDeviceReady() {
-  //     MXSetting &&
-  //       typeof MXSetting.setConsoleLogEnabled === "function" &&
-  //       MXSetting.setConsoleLogEnabled();
-  //     console.log("ondeviceready-mixin");
+    function onDeviceReady() {
+      window.MXSetting &&
+        typeof window.MXSetting.setConsoleLogEnabled === "function" &&
+        window.MXSetting.setConsoleLogEnabled();
+      console.log("ondeviceready-mixin");
 
-  //     callBack();
-  //   }
-  // },
+      callBack();
+    }
+  },
 
   /**
    * frameworkf7 toast

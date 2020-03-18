@@ -9,6 +9,10 @@ const routerConfig = [
   {
     path: "/detail/",
     component: DetailScreen
+  },
+  {
+    path: '(.*)',
+    component: HomeScreen
   }
 ];
 export default routerConfig;

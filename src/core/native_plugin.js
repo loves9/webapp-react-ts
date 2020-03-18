@@ -5,14 +5,14 @@
  * 时间 2018年07月12日
  */
 
-// 设置mxsetting对象
+// 设置window.MXSetting对象
 function MXOnready(callBack) {
   document.addEventListener("deviceready", onDeviceReady, false); // 等待cordova加载
 
   function onDeviceReady() {
-    MXSetting &&
-      typeof MXSetting.setConsoleLogEnabled === "function" &&
-      MXSetting.setConsoleLogEnabled();
+    window.MXSetting &&
+      typeof window.MXSetting.setConsoleLogEnabled === "function" &&
+      window.MXSetting.setConsoleLogEnabled();
     console.log("ondeviceready-plugin");
 
     callBack();
@@ -30,7 +30,7 @@ export default {
      * @param {*} buttonLabels
      */
     confirm(title, message, callback, buttonLabels) {
-      if (buttonLabels == undefined || buttonLabels.length < 2) {
+      if (buttonLabels === undefined || buttonLabels.length < 2) {
         buttonLabels = ["确定", "取消"];
       }
       navigator.notification.confirm(message, callback, title, buttonLabels);
@@ -49,7 +49,7 @@ export default {
      * @param {*} buttonLabel
      */
     alert(title, message, callback, buttonLabel) {
-      if (buttonLabel == undefined || buttonLabel == "") {
+      if (buttonLabel === undefined || buttonLabel === "") {
         buttonLabel = "确定";
       }
       navigator.notification.alert(message, callback, title, buttonLabel);
@@ -65,7 +65,7 @@ export default {
      */
     disableBackButton() {
       MXOnready(function() {
-        MXWebui.disableBackKey();
+        window.MXWebui.disableBackKey();
       });
     }
     // 调用示例
@@ -81,7 +81,7 @@ export default {
      * @param {*} callBack
      */
     getUser(callBack) {
-      MXCommon.getCurrentUser(function(result) {
+      window.MXCommon.getCurrentUser(function(result) {
         return callBack(result);
       });
     }

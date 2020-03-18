@@ -2,7 +2,7 @@ import axios from "axios";
 import Statistics from "./statistics";
 
 class BusinessRequest {
-  constructor(options = {}) {}
+  // constructor(options = {}) {}
   /**
    *  http 状态码对应的文本
    */
@@ -79,7 +79,7 @@ class BusinessRequest {
      *  2. null  :空值，发送http请求的过程中不显示 ProgressBar。
      *  3. string:非空字符串，发送http请求的过程中显示一个 ProgressBar，其中的文字为该属性设定的值。
      */
-    maskMsg: "请稍候...",
+    maskMsg: "正在加载",
 
     /**
      *  http请求出错时是否自动显示 toast 消息，测试环境下此值无效，强制弹出错误 toast 。
@@ -108,13 +108,13 @@ class BusinessRequest {
   }
 
   baseRequest(args) {
-    if (typeof MXCommon === "undefined") {
-      // 初始化 MXCommon
+    if (typeof window.MXCommon === "undefined") {
+      // 初始化 window.MXCommon
       document.addEventListener("deviceready", onDeviceReady, false); // 等待cordova加载
       function onDeviceReady() {
-        MXSetting &&
-          typeof MXSetting.setConsoleLogEnabled === "function" &&
-          MXSetting.setConsoleLogEnabled();
+        window.MXSetting &&
+          typeof window.MXSetting.setConsoleLogEnabled === "function" &&
+          window.MXSetting.setConsoleLogEnabled();
         console.log("ondeviceready---http");
       }
     }
@@ -136,8 +136,8 @@ class BusinessRequest {
 
     var _url = "";
     // url如果包含api://就拼接baseurl
-    if (args.url.indexOf("api://") != -1) {
-      _url = args.url.replace("api:/", process.env.VUE_APP_BASE_URL);
+    if (args.url.indexOf("api://") !== -1) {
+      _url = args.url.replace("api:/", process.env.REACT_APP_BASE_URL);
     } else {
       _url = args.url;
     }
@@ -149,7 +149,7 @@ class BusinessRequest {
     this.config.autoToast = !args.autoToast;
     this.config.dataType = args.dataType;
 
-    if (args.mask != undefined || args.mask === false) {
+    if (args.mask !== undefined || args.mask === false) {
       this.config.mask = false;
     }
 
@@ -165,7 +165,7 @@ class BusinessRequest {
 
         // TODO: 超时
         if (this.requestTimeout) {
-          GlobalVueObject.$f7.toast
+          window.GlobalReactObject.$f7.toast
             .create({
               text: "请求超时",
               position: "center",
@@ -178,13 +178,13 @@ class BusinessRequest {
   }
 
   showPreloader() {
-    // GlobalVueObject.$f7.dialog.preloader(this.config.maskMsg)
-    GlobalVueObject.$f7.preloader.show();
+    // window.GlobalReactObject.$f7.dialog.preloader(this.config.maskMsg)
+    window.GlobalReactObject.$f7.preloader.show();
   }
 
   closePreloader() {
-    // GlobalVueObject.$f7.dialog.close()
-    GlobalVueObject.$f7.preloader.hide();
+    // window.GlobalReactObject.$f7.dialog.close()
+    window.GlobalReactObject.$f7.preloader.hide();
   }
 
   /**
@@ -204,14 +204,14 @@ class BusinessRequest {
 
     parameter = parameter || this.config.parameter;
 
-    // console.log('url=>', this.config.url)
+    console.log('url=>', this.config.url)
 
     if (this.config.method === 'post') {
       parameter = JSON.stringify(parameter)
     }
 
     // 适配手机端与pc端
-    if (typeof MXCommon !== "undefined") {
+    if (typeof window.MXCommon !== "undefined") {
       var timeInterval;
       var startTimeStamp;
       var stopTimeStamp;
@@ -239,7 +239,7 @@ class BusinessRequest {
       }
 
       start(); // 开始计时
-      MXCommon.ajax({
+      window.MXCommon.ajax({
         type: _this.config.method,
         url: _this.config.url,
         contentType: _this.config.method === 'post' ? "application/json;charset=utf-8" : '',
@@ -249,7 +249,7 @@ class BusinessRequest {
         complete: () => {
           this.closePreloader();
 
-          if (_this.complete == undefined) {
+          if (_this.complete === undefined) {
             return;
           }
 
@@ -260,21 +260,21 @@ class BusinessRequest {
         success: (data, status, xhr) => {
           if (!data) {
             console.log('data undefined', JSON.stringify(xhr))
-            GlobalVueObject.HRToast('data undefined');
+            window.GlobalReactObject.HRToast('data undefined');
             return
           }
           
           try {
             data = JSON.parse(data);
           } catch (error) {
-            GlobalVueObject.HRToast(error);
+            window.GlobalReactObject.HRToast(error);
           }
 
           if (xhr.status === 200) {
             _this.success(data, status, xhr);
           } else {
             if (_this.config.autoToast) {
-              GlobalVueObject.HRToast(data, "close");
+              window.GlobalReactObject.HRToast(data, "close");
             }
             _this.error(data, status, xhr);
           }
@@ -284,7 +284,7 @@ class BusinessRequest {
         },
         error: function(data, status, xhr) {
           if (_this.config.autoToast) {
-            GlobalVueObject.HRToast(data, "close");
+            window.GlobalReactObject.HRToast(data, "close");
           }
 
           _this.error(data, status, xhr);
@@ -293,12 +293,12 @@ class BusinessRequest {
           stop(data, status, xhr, parameter);
 
           if (
-            xhr.status == 400 ||
-            xhr.status == 404 ||
-            xhr.status == 405 ||
-            xhr.status == 415
+            xhr.status === 400 ||
+            xhr.status === 404 ||
+            xhr.status === 405 ||
+            xhr.status === 415
           ) {
-            // GlobalVueObject.easyPush('/upgradePage', { errorData: data, type: 'system' })
+            // window.GlobalReactObject.easyPush('/upgradePage', { errorData: data, type: 'system' })
           }
           // TODO: 系统升级
           else if (0) {
@@ -306,8 +306,8 @@ class BusinessRequest {
         }
       });
     } else {
-      if (process.env.NODE_ENV == "development") {
-        // GlobalVueObject.$f7.dialog.preloader('MXCommon未初始化，正在调用axios')
+      if (process.env.NODE_ENV === "development") {
+        // window.GlobalReactObject.$f7.dialog.preloader('window.MXCommon未初始化，正在调用axios')
       }
 
       axios({
@@ -319,9 +319,9 @@ class BusinessRequest {
         data: parameter
       })
         .then(response => {
-          GlobalVueObject.$f7.dialog.close();
+          window.GlobalReactObject.$f7.dialog.close();
 
-          if (response.status == 200) {
+          if (response.status === 200) {
             _this.success(response.data, response.status, "");
           } else {
             _this.error(response.data, response.status, "");
@@ -331,10 +331,10 @@ class BusinessRequest {
         })
         .catch(error => {
           console.log(error);
-          GlobalVueObject.$f7.dialog.close();
+          window.GlobalReactObject.$f7.dialog.close();
 
           if (_this.config.autoToast) {
-            // GlobalVueObject.$vux.toast.show({
+            // window.GlobalReactObject.$vux.toast.show({
             //     text: error.data
             // })
           }

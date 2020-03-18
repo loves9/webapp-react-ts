@@ -61,9 +61,9 @@ export default {
     let requestParams = {
       appid: appid,
       ctime: this.getNowFormatDate(),
-      did: device.uuid,
+      did: window.device.uuid,
       event: "",
-      model: device.model,
+      model: window.device.model,
       name: "",
       loginName: "",
       deptName: "",
@@ -94,9 +94,9 @@ export default {
     let requestParams = {
       appid: appid,
       ctime: this.getNowFormatDate(),
-      did: device.uuid,
+      did: window.device.uuid,
       event: "entry",
-      model: device.model,
+      model: window.device.model,
       name: "",
       loginName: "",
       deptName: "",
@@ -115,13 +115,13 @@ export default {
   },
 
   sendRequest(param) {
-    if (process.env.VUE_APP_STATISTICS_URL == "") {
+    if (process.env.REACT_APP_STATISTICS_URL === "") {
       return;
     }
 
     // console.log(JSON.stringify(param));
 
-    MXCommon.ajax({
+    window.MXCommon.ajax({
       type: "post",
       url: process.env.VUE_APP_STATISTICS_URL,
       contentType: "application/json",
@@ -146,9 +146,9 @@ export default {
     let requestParams = {
       appid: appid,
       ctime: this.getNowFormatDate(),
-      did: device.uuid,
+      did: window.device.uuid,
       event: "entry",
-      model: device.model,
+      model: window.device.model,
       name: "",
       loginName: "",
       deptName: "",

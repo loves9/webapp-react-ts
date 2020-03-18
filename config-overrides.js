@@ -8,6 +8,10 @@ const {
 const path = require("path");
 const fse = require("fs-extra");
 
+function resolvePath(dir) {
+  return path.join(__dirname, '.', dir)
+}
+
 // module.exports = override(
 //   fixBabelImports("import", {
 //     libraryName: "antd",
@@ -84,7 +88,9 @@ module.exports = {
     }),
     addWebpackAlias({
       // 路径别名
-      "@": path.resolve(__dirname, "src")
+      "@": resolvePath("src"),
+      "api": resolvePath("src/page/api"),
+      ["page"]: path.resolve(__dirname, "src/page"),
     }),
     (config, env) => {
       // 暴露webpack的配置 config ,evn
