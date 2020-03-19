@@ -1,4 +1,5 @@
 import * as React from "react";
+import EnhancedComponent from "./component/HOC";
 import { Page, List, ListItem } from "framework7-react";
 // import logo from "../logo.svg";
 // import { Button } from "antd";
@@ -15,12 +16,18 @@ class HomeScreen extends React.Component<
       date: new Date(),
       systeData: []
     };
+
+    this.ItemList = this.ItemList.bind(this);
   }
 
   componentDidMount() {
     // this.$f7ready((f7) => {
     //   f7.dialog.alert('Component mounted');
     // });
+
+    console.log(99998888);
+
+    // this.itemOnPressed(99999)
 
     console.log("componentDidMount-home");
 
@@ -41,23 +48,65 @@ class HomeScreen extends React.Component<
     console.log("componentWillUnmount-home");
   }
 
-  render() {
-    function ItemList(props) {
-      const data = props.data;
-      const listItems = data.map(item => <ListItem title={item.systemName} after={item.todoCount} link="#"></ListItem>);
-      return (
-        <List>
-          {listItems}
-        </List>
-      );
-    }
+  ItemList(props) {
+    const data = props.data;
+    const listItems = data.map((item) => (
+      <ListItem
+        key={item.systemName}
+        title={item.systemName}
+        after={item.todoCount}
+        link="#"
+        onClick={e => {
+          e.preventDefault();
+          this.itemOnPressed(item);
+        }}
+      ></ListItem>
+    ));
+    return <List noHairlines>{listItems}</List>;
+  }
 
+  // TestFunctionComponent() {
+  //   const data = [{
+  //     "systemIdentifier": "bangongyidiantong",
+  //     "systemName": "办公一点通",
+  //     "todoCount": 14,
+  //     "appID": "gonggongshenpi"
+  //   }, {
+  //     "systemIdentifier": "gongwenshenpi",
+  //     "systemName": "公文审批",
+  //     "todoCount": 0,
+  //     "appID": "gongwenshenpi"
+  //   }];
+  //   console.log("ooooooo", this);
+  //   const listItems = data.map((item, index) => (
+  //     <ListItem
+  //       key={item.systemName}
+  //       title={item.systemName}
+  //       after={item.todoCount}
+  //       link="#"
+  //       onClick={e => {
+  //         e.preventDefault();
+  //         console.log("iiiiiiiiiii", this);
+  //         this.itemOnPressed()
+  //         console.log("eeeee", this);
+  //       }}
+  //     ></ListItem>
+  //   ));
+  //   return <List noHairlines>{listItems}</List>;
+  // }
+
+  render() {
     return (
       <Page
         onPageBeforeIn={this.onPageBeforeIn.bind(this)}
         onPageInit={this.onPageInit.bind(this)}
       >
-        <ItemList data={this.state.systeData}></ItemList>
+        <this.ItemList data={this.state.systeData}></this.ItemList>
+
+        {/* <Button fill onClick={this.activateLasers.bind(this)}>
+          Test
+        </Button> */}
+
         {/* <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
@@ -95,12 +144,26 @@ class HomeScreen extends React.Component<
   }
 
   activateLasers() {
-    // console.log("bbbbbbbbbbb", this);
+    // console.log("bbbbbbbbbbb", window.GlobalReactObject);
+    // console.log("ccccc", this);
 
-    this.$f7router?.navigate("/detail/", {
-      // pushState: true,
-      props: {}
-    });
+    // window.GlobalReactObject.$f7.preloader.show();
+
+    // this.$f7router?.navigate("/detail/", {
+    //   // pushState: true,
+    //   props: {}
+    // });
+  }
+
+  itemOnPressed(item) {
+    console.log("cccccccc pressed");
+    // window.GlobalReactObject.$f7.preloader.show();
+    window.MXCommon.lanuchApp(
+      item.appID, //这里的appid为创建应用时的应用id
+      "1", //参数，可以将其传递到将要启动的插件应用的url上
+      function(result) {}, //启动另一个插件应用成功的回调
+      function(error) {} //启动另一个插件应用失败的回调
+    );
   }
 
   queryTodoSerice(params) {
@@ -122,4 +185,4 @@ class HomeScreen extends React.Component<
   }
 }
 
-export default HomeScreen;
+export default EnhancedComponent(HomeScreen);

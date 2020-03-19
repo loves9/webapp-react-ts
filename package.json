@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-app-rewired start",
-    "dev": "react-app-rewired start",
+    "start": "PORT=8080 react-app-rewired start",
+    "dev": "npm run start",
     "build": "react-app-rewired build",
     "build:release": "react-app-rewired build --env=release",
     "test": "react-app-rewired test"
