@@ -1,9 +1,10 @@
 const routerManager = {
   push(url, params, self) {
-    // self.$f7router.navigate(url, {
-    //   props: params
+    // this.$f7router?.navigate("/detail/", {
+    //   props: {}
     // });
-    self.$f7router.navigate({
+
+    self.$f7router.navigate(url, {
       name: url,
       // params: {
       //     params: 'hhhhh',
@@ -14,7 +15,7 @@ const routerManager = {
   },
 
   pop(url, options, self) {
-    if (url == undefined) {
+    if (url === undefined) {
       self.$f7router.back();
     } else {
       self.$f7.views.main.router.back(url, { force: true });

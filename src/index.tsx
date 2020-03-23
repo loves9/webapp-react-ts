@@ -30,9 +30,6 @@ declare global {
   }
 }
 
-// React.$core = function() {
-// };
-
 const globalReactObject = ReactDOM.render(
   <App />,
   document.getElementById("root")

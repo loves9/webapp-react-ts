@@ -41,7 +41,7 @@ class ReactApp extends React.Component {
   // constructor(parameters) {}
 
   componentDidMount() {
-    console.log("onPageBeforeIn");
+    // console.log("onPageBeforeIn");
   }
 
   render() {

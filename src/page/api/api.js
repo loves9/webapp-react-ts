@@ -22,7 +22,7 @@ const HttpBusinessRequest = {
    */
   queryTodoSerice(params) {
     var args = {
-      mask: false,
+      // mask: false,
       method: "get",
       dataType: 'text',
       url: "api://todo-service/todo/count"

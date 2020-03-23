@@ -3,15 +3,15 @@ import EnhancedComponent from "./component/HOC";
 // import HttpBusinessRequest from "./api/api";
 import { Page } from "framework7-react";
 
-class DetailScreen extends React.Component {
+class TemplateScreen extends React.Component {
   // constructor(parameters) {}
 
   componentDidMount() {
-    console.log("componentDidMount-detail");
+    console.log("componentDidMount-template");
   }
 
   componentWillUnmount() {
-    console.log("componentWillUnmount-detail");
+    console.log("componentWillUnmount-template");
   }
 
   render() {
@@ -26,16 +26,15 @@ class DetailScreen extends React.Component {
       </Page>
     );
   }
+
   onPageBeforeIn() {
     // do something on page before in
-    console.log('onPageBeforeIn-detail')
+    console.log('onPageBeforeIn-template')
   }
   onPageInit() {
     // do something on page init
-    console.log('onPageInit-detail')
+    console.log('onPageInit-template')
   }
-
-  
 }
 
-export default EnhancedComponent(DetailScreen);
+export default EnhancedComponent(TemplateScreen);

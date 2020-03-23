@@ -1,13 +1,13 @@
 import * as React from "react";
 import EnhancedComponent from "./component/HOC";
-import { Page, List, ListItem } from "framework7-react";
+import { Page, List, ListItem, Button } from "framework7-react";
 // import logo from "../logo.svg";
 // import { Button } from "antd";
 import HttpBusinessRequest from "./api/api";
 
 class HomeScreen extends React.Component<
-  {},
-  { date: any; systeData: Array<Object> }
+  any,
+  { date: any; systeData: Array<Object>; }
 > {
   constructor(props) {
     super(props);
@@ -18,16 +18,13 @@ class HomeScreen extends React.Component<
     };
 
     this.ItemList = this.ItemList.bind(this);
+
   }
 
   componentDidMount() {
     // this.$f7ready((f7) => {
     //   f7.dialog.alert('Component mounted');
     // });
-
-    console.log(99998888);
-
-    // this.itemOnPressed(99999)
 
     console.log("componentDidMount-home");
 
@@ -50,11 +47,11 @@ class HomeScreen extends React.Component<
 
   ItemList(props) {
     const data = props.data;
-    const listItems = data.map((item) => (
+    const listItems = data.map(item => (
       <ListItem
         key={item.systemName}
         title={item.systemName}
-        after={item.todoCount}
+        after={item.todoCount.toString()}
         link="#"
         onClick={e => {
           e.preventDefault();
@@ -103,9 +100,9 @@ class HomeScreen extends React.Component<
       >
         <this.ItemList data={this.state.systeData}></this.ItemList>
 
-        {/* <Button fill onClick={this.activateLasers.bind(this)}>
+        <Button fill onClick={this.activateLasers.bind(this)}>
           Test
-        </Button> */}
+        </Button>
 
         {/* <div className="App">
           <header className="App-header">
@@ -140,7 +137,7 @@ class HomeScreen extends React.Component<
   }
   onPageInit() {
     // do something on page init
-    console.log("onPageInit");
+    // console.log("onPageInit");
   }
 
   activateLasers() {
@@ -150,9 +147,13 @@ class HomeScreen extends React.Component<
     // window.GlobalReactObject.$f7.preloader.show();
 
     // this.$f7router?.navigate("/detail/", {
-    //   // pushState: true,
     //   props: {}
     // });
+
+    this.props.easyPush('/detail/', {})
+
+    // console.log(this.props.$core)
+    
   }
 
   itemOnPressed(item) {
@@ -184,5 +185,6 @@ class HomeScreen extends React.Component<
     request.send();
   }
 }
+
 
 export default EnhancedComponent(HomeScreen);

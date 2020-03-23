@@ -14,7 +14,7 @@ export default {
     if (s > 1e15) return s;
     n = n > -1 && n <= 20 ? n : 2;
 
-    s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
+    s = parseFloat((s + "").replace(/[^\d.-]/g, "")).toFixed(n) + "";
 
     var l = s
       .split(".")[0]
@@ -26,7 +26,7 @@ export default {
 
     // 每千位加一个“，”。
     for (var i = 0; i < l.length; i++) {
-      t += l[i] + ((i + 1) % 3 == 0 && i + 1 != l.length ? "," : "");
+      t += l[i] + ((i + 1) % 3 === 0 && i + 1 !== l.length ? "," : "");
     }
 
     return (
@@ -44,7 +44,7 @@ export default {
   maskPhoneNumber: function(number, mask) {
     mask = mask || "*";
     if (!number) return "";
-    if (number.length != 11) return number;
+    if (number.length !== 11) return number;
     var start, middle, end;
     start = number.substring(0, 3);
     end = number.substring(number.length - 4, number.length);
@@ -127,7 +127,7 @@ export default {
       if (new RegExp("(" + k + ")").test(format))
         format = format.replace(
           RegExp.$1,
-          RegExp.$1.length == 1
+          RegExp.$1.length === 1
             ? o[k]
             : ("00" + o[k]).substr(("" + o[k]).length)
         );
@@ -149,7 +149,7 @@ export default {
       if (!variable) {
         params[pair[0]] = pair[1]
       }else{
-        if (pair[0] == variable) {
+        if (pair[0] === variable) {
           return pair[1];
         }
       }
@@ -159,3 +159,4 @@ export default {
     return params;
   }
 };
+
