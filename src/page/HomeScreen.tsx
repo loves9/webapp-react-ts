@@ -7,7 +7,7 @@ import HttpBusinessRequest from "./api/api";
 
 class HomeScreen extends React.Component<
   any,
-  { date: any; systeData: Array<Object>; }
+  { date: any; systeData: Array<Object> }
 > {
   constructor(props) {
     super(props);
@@ -17,8 +17,8 @@ class HomeScreen extends React.Component<
       systeData: []
     };
 
+    // 绑定this
     this.ItemList = this.ItemList.bind(this);
-
   }
 
   componentDidMount() {
@@ -28,21 +28,17 @@ class HomeScreen extends React.Component<
 
     console.log("componentDidMount-home");
 
-    document.addEventListener("deviceready", onDeviceReady, false); // 等待cordova加载
-
-    const _this = this;
-    function onDeviceReady() {
-      window.MXSetting &&
-        typeof window.MXSetting.setConsoleLogEnabled === "function" &&
-        window.MXSetting.setConsoleLogEnabled();
-      console.log("ondeviceready-mixin");
-
-      _this.queryTodoSerice({});
-    }
+    this.props.setDeviceReady(() => {
+      this.queryTodoSerice({});
+    })
   }
 
   componentWillUnmount() {
     console.log("componentWillUnmount-home");
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("componentDidUpdate-home", prevProps, prevState, snapshot);
   }
 
   ItemList(props) {
@@ -62,36 +58,6 @@ class HomeScreen extends React.Component<
     return <List noHairlines>{listItems}</List>;
   }
 
-  // TestFunctionComponent() {
-  //   const data = [{
-  //     "systemIdentifier": "bangongyidiantong",
-  //     "systemName": "办公一点通",
-  //     "todoCount": 14,
-  //     "appID": "gonggongshenpi"
-  //   }, {
-  //     "systemIdentifier": "gongwenshenpi",
-  //     "systemName": "公文审批",
-  //     "todoCount": 0,
-  //     "appID": "gongwenshenpi"
-  //   }];
-  //   console.log("ooooooo", this);
-  //   const listItems = data.map((item, index) => (
-  //     <ListItem
-  //       key={item.systemName}
-  //       title={item.systemName}
-  //       after={item.todoCount}
-  //       link="#"
-  //       onClick={e => {
-  //         e.preventDefault();
-  //         console.log("iiiiiiiiiii", this);
-  //         this.itemOnPressed()
-  //         console.log("eeeee", this);
-  //       }}
-  //     ></ListItem>
-  //   ));
-  //   return <List noHairlines>{listItems}</List>;
-  // }
-
   render() {
     return (
       <Page
@@ -103,6 +69,7 @@ class HomeScreen extends React.Component<
         <Button fill onClick={this.activateLasers.bind(this)}>
           Test
         </Button>
+
 
         {/* <div className="App">
           <header className="App-header">
@@ -150,13 +117,16 @@ class HomeScreen extends React.Component<
     //   props: {}
     // });
 
-    this.props.easyPush('/detail/', {})
+    // this.props.easyPush("/detail/", {});
+
+    this.setState({
+      date: '2019-02-10'
+    }) 
 
     // console.log(this.props.$core)
-    
   }
 
-  itemOnPressed(item) {
+  private itemOnPressed(item) {
     console.log("cccccccc pressed");
     // window.GlobalReactObject.$f7.preloader.show();
     window.MXCommon.lanuchApp(
@@ -167,7 +137,7 @@ class HomeScreen extends React.Component<
     );
   }
 
-  queryTodoSerice(params) {
+  public queryTodoSerice(params) {
     let request = HttpBusinessRequest.queryTodoSerice(params);
     request.complete = () => {};
     request.success = (data, status, xhr) => {
@@ -185,6 +155,5 @@ class HomeScreen extends React.Component<
     request.send();
   }
 }
-
 
 export default EnhancedComponent(HomeScreen);

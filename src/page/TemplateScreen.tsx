@@ -3,7 +3,7 @@ import EnhancedComponent from "./component/HOC";
 // import HttpBusinessRequest from "./api/api";
 import { Page } from "framework7-react";
 
-class TemplateScreen extends React.Component {
+class TemplateScreen extends React.Component<any, {}> {
   // constructor(parameters) {}
 
   componentDidMount() {

@@ -3,11 +3,13 @@ import EnhancedComponent from "./component/HOC";
 // import HttpBusinessRequest from "./api/api";
 import { Page } from "framework7-react";
 
-class DetailScreen extends React.Component {
+class DetailScreen extends React.Component<any, {}> {
   // constructor(parameters) {}
 
   componentDidMount() {
     console.log("componentDidMount-detail");
+
+    console.log(this.state);
   }
 
   componentWillUnmount() {
@@ -22,20 +24,19 @@ class DetailScreen extends React.Component {
       >
         <div>
           <h1>Hello, world!</h1>
+          <div>{this.props.$core.Utils.formatAmount(3284698)}</div>
         </div>
       </Page>
     );
   }
   onPageBeforeIn() {
     // do something on page before in
-    console.log('onPageBeforeIn-detail')
+    console.log("onPageBeforeIn-detail");
   }
   onPageInit() {
     // do something on page init
-    console.log('onPageInit-detail')
+    console.log("onPageInit-detail");
   }
-
-  
 }
 
 export default EnhancedComponent(DetailScreen);

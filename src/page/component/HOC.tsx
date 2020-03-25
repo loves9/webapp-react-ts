@@ -5,7 +5,7 @@ import Core from '../../core/index'
 function HOC(ComponentClass) {
   class EnhancedComponent extends React.Component {
     componentDidMount() {
-      console.log("componentDidMount-hoc");
+      // console.log("componentDidMount-hoc");
     }
 
     render() {
