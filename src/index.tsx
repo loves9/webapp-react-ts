@@ -42,5 +42,5 @@ window.GlobalReactObject = globalReactObject;
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-console.log("url>", process.env.REACT_APP_BASE_URL);
+console.log("url>", process.env.REACT_APP_BASE_URL, process.env);
 

@@ -1,5 +1,6 @@
 import * as React from "react";
 import EnhancedComponent from "./component/HOC";
+// import Hello from "./component/Hello";
 import { Page, List, ListItem, Button } from "framework7-react";
 // import logo from "../logo.svg";
 // import { Button } from "antd";
@@ -9,6 +10,7 @@ class HomeScreen extends React.Component<
   any,
   { date: any; systeData: Array<Object> }
 > {
+  
   constructor(props) {
     super(props);
 
@@ -28,9 +30,11 @@ class HomeScreen extends React.Component<
 
     console.log("componentDidMount-home");
 
+    console.log(this.context);
+
     this.props.setDeviceReady(() => {
       this.queryTodoSerice({});
-    })
+    });
   }
 
   componentWillUnmount() {
@@ -39,6 +43,8 @@ class HomeScreen extends React.Component<
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     console.log("componentDidUpdate-home", prevProps, prevState, snapshot);
+
+    console.log(this.context);
   }
 
   ItemList(props) {
@@ -69,7 +75,6 @@ class HomeScreen extends React.Component<
         <Button fill onClick={this.activateLasers.bind(this)}>
           Test
         </Button>
-
 
         {/* <div className="App">
           <header className="App-header">
@@ -120,8 +125,8 @@ class HomeScreen extends React.Component<
     // this.props.easyPush("/detail/", {});
 
     this.setState({
-      date: '2019-02-10'
-    }) 
+      date: "2019-02-10"
+    });
 
     // console.log(this.props.$core)
   }

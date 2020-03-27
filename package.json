@@ -6,7 +6,7 @@
     "start": "PORT=8080 react-app-rewired start",
     "dev": "npm run start",
     "build": "react-app-rewired build",
-    "build:release": "react-app-rewired build --env=release",
+    "build:release": ".env.release react-app-rewired build",
     "test": "react-app-rewired test"
   },
   "dependencies": {

@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+// import "./App.css";
 import routerConfig from "./routes";
 // Import F7 Bundle
 // import Framework7 from 'framework7/framework7-lite.esm.bundle.js';
