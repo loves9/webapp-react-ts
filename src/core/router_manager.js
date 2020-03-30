@@ -4,13 +4,18 @@ const routerManager = {
     //   props: {}
     // });
 
+    console.log(params);
+
     self.$f7router.navigate(url, {
       name: url,
-      // params: {
-      //     params: 'hhhhh',
-      //     index: 100
-      // },
-      query: params
+      params: {
+        params: "hhhhh",
+        index: 100
+      },
+      query: params,
+      props: {
+        routeParams: params
+      }
     });
   },
 

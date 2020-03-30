@@ -5,8 +5,7 @@ export default {
    * @param {string} title
    */
   setTitle(title) {
-    // MXWebui.setWebViewTitle(title);
-    console.log(title)
+    window.MXWebui.setWebViewTitle(title);
   },
 
   /**
@@ -49,13 +48,13 @@ export default {
   /**
    * 获取页面传递的参数
    */
-  easyGetParams() {
-    if (this.$f7route) {
-      return this.$f7route.query;
-    }
+  // easyGetParams() {
+  //   if (this.$f7route) {
+  //     return this.$f7route.query;
+  //   }
 
-    return {};
-  },
+  //   return {};
+  // },
 
   /**
    * 设置 MX cordova

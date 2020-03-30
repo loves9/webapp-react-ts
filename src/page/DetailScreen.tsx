@@ -1,15 +1,18 @@
 import * as React from "react";
 import EnhancedComponent from "./component/HOC";
 // import HttpBusinessRequest from "./api/api";
-import { Page } from "framework7-react";
+import { Page, Button } from "framework7-react";
 
 class DetailScreen extends React.Component<any, {}> {
-  // constructor(parameters) {}
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
     console.log("componentDidMount-detail");
 
-    console.log(this.state);
+    console.log(this.$f7route);
+    console.log(this.props.routeParams)
   }
 
   componentWillUnmount() {
@@ -26,16 +29,24 @@ class DetailScreen extends React.Component<any, {}> {
           <h1>Hello, world!</h1>
           <div>{this.props.$core.Utils.formatAmount(3284698)}</div>
         </div>
+
+        <Button fill onClick={this.buttonClick.bind(this)}>
+          BACK
+        </Button>
       </Page>
     );
   }
+
+  buttonClick() {
+    this.props.easyPop()
+  }
   onPageBeforeIn() {
     // do something on page before in
-    console.log("onPageBeforeIn-detail");
+    // console.log("onPageBeforeIn-detail");
   }
   onPageInit() {
     // do something on page init
-    console.log("onPageInit-detail");
+    // console.log("onPageInit-detail");
   }
 }
 

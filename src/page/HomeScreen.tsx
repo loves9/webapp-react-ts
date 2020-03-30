@@ -30,7 +30,7 @@ class HomeScreen extends React.Component<
 
     console.log("componentDidMount-home");
 
-    console.log(this.context);
+    // console.log(this.context);
 
     this.props.setDeviceReady(() => {
       this.queryTodoSerice({});
@@ -42,9 +42,9 @@ class HomeScreen extends React.Component<
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log("componentDidUpdate-home", prevProps, prevState, snapshot);
+    // console.log("componentDidUpdate-home", prevProps, prevState, snapshot);
 
-    console.log(this.context);
+    // console.log(this.context);
   }
 
   ItemList(props) {
@@ -122,11 +122,14 @@ class HomeScreen extends React.Component<
     //   props: {}
     // });
 
-    // this.props.easyPush("/detail/", {});
+    this.props.easyPush("/detail/", { from: 'home', aaa: {
+      bb: [1, 3],
+      cc: '444'
+    }});
 
-    this.setState({
-      date: "2019-02-10"
-    });
+    // this.setState({
+    //   date: "2019-02-10"
+    // });
 
     // console.log(this.props.$core)
   }

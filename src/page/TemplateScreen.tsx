@@ -4,7 +4,9 @@ import EnhancedComponent from "./component/HOC";
 import { Page } from "framework7-react";
 
 class TemplateScreen extends React.Component<any, {}> {
-  // constructor(parameters) {}
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
     console.log("componentDidMount-template");
