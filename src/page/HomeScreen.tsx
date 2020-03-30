@@ -8,7 +8,7 @@ import HttpBusinessRequest from "./api/api";
 
 class HomeScreen extends React.Component<
   any,
-  { date: any; systeData: Array<Object> }
+  { date: any, systeData: Array<Object> }
 > {
   
   constructor(props) {

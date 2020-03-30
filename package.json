@@ -6,7 +6,7 @@
     "start": "PORT=8080 react-app-rewired start",
     "dev": "npm run start",
     "build": "react-app-rewired build",
-    "build:release": ".env.release react-app-rewired build",
+    "build:release": "dotenv -e .env.release react-app-rewired build",
     "test": "react-app-rewired test"
   },
   "dependencies": {
@@ -48,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "dotenv-cli": "^3.1.0"
   }
 }
