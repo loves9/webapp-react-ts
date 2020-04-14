@@ -1,7 +1,7 @@
 import * as React from "react";
 import EnhancedComponent from "./component/HOC";
 // import Hello from "./component/Hello";
-import { Page, List, ListItem, Button } from "framework7-react";
+import { Page, List, ListItem } from "framework7-react";
 // import logo from "../logo.svg";
 // import { Button } from "antd";
 import HttpBusinessRequest from "./api/api";
@@ -72,9 +72,9 @@ class HomeScreen extends React.Component<
       >
         <this.ItemList data={this.state.systeData}></this.ItemList>
 
-        <Button fill onClick={this.activateLasers.bind(this)}>
+        {/* <Button fill onClick={this.activateLasers.bind(this)}>
           Test
-        </Button>
+        </Button> */}
 
         {/* <div className="App">
           <header className="App-header">
@@ -149,7 +149,7 @@ class HomeScreen extends React.Component<
     let request = HttpBusinessRequest.queryTodoSerice(params);
     request.complete = () => {};
     request.success = (data, status, xhr) => {
-      console.log("ssss", JSON.stringify(data));
+      // console.log("ssss", JSON.stringify(data));
       this.setState({
         systeData: data.data
       });
