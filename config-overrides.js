@@ -78,7 +78,7 @@ let copyConfig = function({ origin, target }) {
 module.exports = {
   webpack: override(
     fixBabelImports("import", {
-      libraryName: "antd",
+      libraryName: "antd-mobile",
       libraryDirectory: "es",
       style: true
     }),

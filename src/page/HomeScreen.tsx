@@ -1,22 +1,27 @@
 import * as React from "react";
 import EnhancedComponent from "./component/HOC";
 // import Hello from "./component/Hello";
-import { Page, List, ListItem } from "framework7-react";
+import { Page, List, ListItem, Button } from "framework7-react";
 // import logo from "../logo.svg";
-// import { Button } from "antd";
+import { Tabs, Badge } from "antd-mobile";
 import HttpBusinessRequest from "./api/api";
+
+const tabs = [
+  { title: <Badge text={"3"}>First Tab</Badge> },
+  { title: <Badge text={"今日(20)"}>Second Tab</Badge> },
+  { title: <Badge dot>Third Tab</Badge> },
+];
 
 class HomeScreen extends React.Component<
   any,
-  { date: any, systeData: Array<Object> }
+  { date: any; systeData: Array<Object> }
 > {
-  
   constructor(props) {
     super(props);
 
     this.state = {
       date: new Date(),
-      systeData: []
+      systeData: [],
     };
 
     // 绑定this
@@ -43,25 +48,28 @@ class HomeScreen extends React.Component<
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     // console.log("componentDidUpdate-home", prevProps, prevState, snapshot);
-
     // console.log(this.context);
   }
 
   ItemList(props) {
     const data = props.data;
-    const listItems = data.map(item => (
+    const listItems = data.map((item) => (
       <ListItem
         key={item.systemName}
         title={item.systemName}
-        after={item.todoCount.toString()}
+        subtitle={"待办数量：" + item.todoCount.toString()}
         link="#"
-        onClick={e => {
+        onClick={(e) => {
           e.preventDefault();
           this.itemOnPressed(item);
         }}
       ></ListItem>
     ));
-    return <List noHairlines>{listItems}</List>;
+    return (
+      <List mediaList inset noHairlines>
+        {listItems}
+      </List>
+    );
   }
 
   render() {
@@ -70,11 +78,57 @@ class HomeScreen extends React.Component<
         onPageBeforeIn={this.onPageBeforeIn.bind(this)}
         onPageInit={this.onPageInit.bind(this)}
       >
-        <this.ItemList data={this.state.systeData}></this.ItemList>
+        {/* <div className="hr-block-small"></div>
+        <this.ItemList data={this.state.systeData}></this.ItemList> */}
 
-        {/* <Button fill onClick={this.activateLasers.bind(this)}>
-          Test
-        </Button> */}
+        <Tabs
+          tabs={tabs}
+          initialPage={1}
+          onChange={(tab, index) => {
+            console.log("onChange", index, tab);
+          }}
+          onTabClick={(tab, index) => {
+            console.log("onTabClick", index, tab);
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "150px",
+              backgroundColor: "#fff",
+            }}
+          >
+            {/* Content of first tab */}
+
+            <Button fill onClick={this.activateLasers.bind(this)}>
+              Test
+            </Button>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "150px",
+              backgroundColor: "#fff",
+            }}
+          >
+            Content of second tab
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "150px",
+              backgroundColor: "#fff",
+            }}
+          >
+            Content of third tab
+          </div>
+        </Tabs>
 
         {/* <div className="App">
           <header className="App-header">
@@ -122,10 +176,13 @@ class HomeScreen extends React.Component<
     //   props: {}
     // });
 
-    this.props.easyPush("/detail/", { from: 'home', aaa: {
-      bb: [1, 3],
-      cc: '444'
-    }});
+    this.props.easyPush("/detail/", {
+      from: "home",
+      aaa: {
+        bb: [1, 3],
+        cc: "444",
+      },
+    });
 
     // this.setState({
     //   date: "2019-02-10"
@@ -135,13 +192,12 @@ class HomeScreen extends React.Component<
   }
 
   private itemOnPressed(item) {
-    console.log("cccccccc pressed");
     // window.GlobalReactObject.$f7.preloader.show();
     window.MXCommon.lanuchApp(
       item.appID, //这里的appid为创建应用时的应用id
       "1", //参数，可以将其传递到将要启动的插件应用的url上
-      function(result) {}, //启动另一个插件应用成功的回调
-      function(error) {} //启动另一个插件应用失败的回调
+      function (result) {}, //启动另一个插件应用成功的回调
+      function (error) {} //启动另一个插件应用失败的回调
     );
   }
 
@@ -151,7 +207,7 @@ class HomeScreen extends React.Component<
     request.success = (data, status, xhr) => {
       // console.log("ssss", JSON.stringify(data));
       this.setState({
-        systeData: data.data
+        systeData: data.data,
       });
 
       // this.renderItemList(this.state.systeData)
