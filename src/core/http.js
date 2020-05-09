@@ -1,5 +1,6 @@
 import axios from "axios";
 import Statistics from "./statistics";
+// import { Toast } from 'antd-mobile';
 
 class BusinessRequest {
   // constructor(options = {}) {}
@@ -180,11 +181,15 @@ class BusinessRequest {
   showPreloader() {
     // window.GlobalReactObject.$f7.dialog.preloader(this.config.maskMsg)
     window.GlobalReactObject.$f7.preloader.show();
+    // Toast.config({ duration, mask })
+    // Toast.loading('正在加载', 60, () => {}, true)
   }
 
   closePreloader() {
     // window.GlobalReactObject.$f7.dialog.close()
     window.GlobalReactObject.$f7.preloader.hide();
+
+    // Toast.hide()
   }
 
   /**

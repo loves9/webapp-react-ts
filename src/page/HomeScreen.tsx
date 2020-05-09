@@ -8,20 +8,21 @@ import HttpBusinessRequest from "./api/api";
 
 const tabs = [
   { title: <Badge text={"3"}>First Tab</Badge> },
-  { title: <Badge text={"今日(20)"}>Second Tab</Badge> },
+  // { title: <Badge text={"今日(20)"}>Second Tab</Badge> },
   { title: <Badge dot>Third Tab</Badge> },
 ];
 
+
 class HomeScreen extends React.Component<
   any,
-  { date: any; systeData: Array<Object> }
+  { date: any; systeData: Array<Object>;}
 > {
   constructor(props) {
     super(props);
 
     this.state = {
       date: new Date(),
-      systeData: [],
+      systeData: []
     };
 
     // 绑定this
@@ -73,6 +74,7 @@ class HomeScreen extends React.Component<
   }
 
   render() {
+
     return (
       <Page
         onPageBeforeIn={this.onPageBeforeIn.bind(this)}
@@ -83,7 +85,7 @@ class HomeScreen extends React.Component<
 
         <Tabs
           tabs={tabs}
-          initialPage={1}
+          initialPage={0}
           onChange={(tab, index) => {
             console.log("onChange", index, tab);
           }}
@@ -96,13 +98,15 @@ class HomeScreen extends React.Component<
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              height: "150px",
-              backgroundColor: "#fff",
+              height: "100%",
+              backgroundColor: "#f4f4f4",
             }}
           >
-            {/* Content of first tab */}
-
-            <Button fill onClick={this.activateLasers.bind(this)}>
+            <Button
+              style={{ width: "200px" }}
+              fill
+              onClick={this.activateLasers.bind(this)}
+            >
               Test
             </Button>
           </div>
@@ -111,22 +115,11 @@ class HomeScreen extends React.Component<
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              height: "150px",
-              backgroundColor: "#fff",
+              height: "100%",
+              backgroundColor: "#f4f4f4",
             }}
           >
-            Content of second tab
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "150px",
-              backgroundColor: "#fff",
-            }}
-          >
-            Content of third tab
+    
           </div>
         </Tabs>
 
