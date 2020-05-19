@@ -84,7 +84,7 @@ module.exports = {
     }),
     addLessLoader({
       javascriptEnabled: true,
-      modifyVars: { "@primary-color": "#298ccf" }
+      modifyVars: { "brand-primary": "#298ccf" }
     }),
     addWebpackAlias({
       // 路径别名
@@ -135,9 +135,6 @@ module.exports = {
   devServer: overrideDevServer(
     // dev server plugin
     (config, env) => {
-      config.port = process.env.PORT || 8080;
-
-      console.log(config);
 
       // while (1) {
 

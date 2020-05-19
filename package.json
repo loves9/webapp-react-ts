@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "PORT=8080 react-app-rewired start",
+    "start": "BROWSER=none PORT=8080 react-app-rewired start",
     "dev": "npm run start",
     "build": "react-app-rewired build",
     "build:release": "dotenv -e .env.release react-app-rewired build",
