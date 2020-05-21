@@ -2,6 +2,7 @@
   "name": "webapp-react-ts",
   "version": "0.1.0",
   "private": true,
+  "homepage":"./",
   "scripts": {
     "start": "BROWSER=none PORT=8080 react-app-rewired start",
     "dev": "npm run start",

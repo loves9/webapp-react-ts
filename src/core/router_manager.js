@@ -7,16 +7,19 @@ const routerManager = {
     console.log(params);
 
     self.$f7router.navigate(url, {
-      name: url,
-      params: {
-        params: "hhhhh",
-        index: 100
-      },
-      query: params,
+      // name: url,
+      // params: {
+      //   params: "hhhhh",
+      //   index: 100
+      // },
+      // query: params,
       props: {
         routeParams: params
-      }
+      },
+      pushState: true
     });
+
+    console.log(self.$f7router);
   },
 
   pop(url, options, self) {

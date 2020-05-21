@@ -13,7 +13,7 @@ import { App, View } from "framework7-react";
 // import HomeScreen from "./page/HomeScreen";
 
 const f7params = {
-  root: '#root',
+  root: "#root",
   // Array with app routes
   routes: routerConfig,
   // App id
@@ -23,9 +23,9 @@ const f7params = {
   // App routes
   view: {
     stackPages: true,
-    pushState: true
-    // pushStateSeparator: ""
-  }
+    pushState: true,
+    // pushStateSeparator: "#"
+  },
 };
 
 // const ReactApp: React.FC = () => {
@@ -41,20 +41,21 @@ class ReactApp extends React.Component {
   // constructor(parameters) {}
 
   componentDidMount() {
-    // console.log("onPageBeforeIn");
+    console.log("App Mounted");
   }
 
   render() {
     return (
       <App params={f7params}>
         {/* initial page is specified in routes.js */}
-        <View main url="/" className="safe-areas">
+        <View main url="/home/">
           {/* <HomeScreen></HomeScreen> */}
         </View>
       </App>
+
+      // <View routes={routerConfig} url="/home/"></View>
     );
   }
 }
-
 
 export default ReactApp;
