@@ -3,12 +3,11 @@ import ListScreen from "./page/ListScreen";
 import DetailScreen from "./page/DetailScreen";
 
 const routerConfig = [
-  {
-    alias: '/index.html',
-    path: "/",
-    // component: HomeScreen,
-    redirect: '/home/'
-  },
+  // {
+  //   path: "/",
+  //   // component: HomeScreen,
+  //   redirect: '/home/'
+  // },
   {
     path: "/home/",
     component: HomeScreen

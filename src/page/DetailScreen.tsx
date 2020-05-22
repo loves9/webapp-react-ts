@@ -38,7 +38,9 @@ class DetailScreen extends React.Component<any, {}> {
   }
 
   buttonClick() {
-    this.props.easyPop()
+    // this.props.easyPop()
+
+    this.$f7router?.back('/home/', {force: true})
   }
   onPageBeforeIn() {
     // do something on page before in

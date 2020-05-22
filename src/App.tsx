@@ -11,21 +11,22 @@ import { App, View } from "framework7-react";
 // Framework7.use(Framework7React);
 
 // import HomeScreen from "./page/HomeScreen";
+const viewParams = {
+  routes: routerConfig,
+  stackPages: true,
+  // pushState: true,
+  // pushStateSeparator: "#"
+};
 
-const f7params = {
+const f7AppParams = {
   root: "#root",
   // Array with app routes
-  routes: routerConfig,
+
   // App id
   id: "io.react.webapp", // App bundle ID
   name: "react-ts", // App name
   theme: "ios", // Automatic theme detection
-  // App routes
-  view: {
-    stackPages: true,
-    pushState: true,
-    // pushStateSeparator: "#"
-  },
+  view: viewParams
 };
 
 // const ReactApp: React.FC = () => {
@@ -46,7 +47,7 @@ class ReactApp extends React.Component {
 
   render() {
     return (
-      <App params={f7params}>
+      <App params={f7AppParams}>
         {/* initial page is specified in routes.js */}
         <View main url="/home/">
           {/* <HomeScreen></HomeScreen> */}

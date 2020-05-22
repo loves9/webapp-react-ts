@@ -34,17 +34,17 @@ class ListScreen extends React.Component<
     //   f7.dialog.alert('Component mounted');
     // });
 
-    console.log("componentDidMount-home");
+    console.log("componentDidMount-list");
 
     // console.log(this.context);
 
     this.props.setDeviceReady(() => {
-      this.queryTodoSerice({});
+      // this.queryTodoSerice({});
     });
   }
 
   componentWillUnmount() {
-    console.log("componentWillUnmount-home");
+    console.log("componentWillUnmount-list");
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {

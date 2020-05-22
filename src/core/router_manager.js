@@ -16,7 +16,7 @@ const routerManager = {
       props: {
         routeParams: params
       },
-      pushState: true
+      // pushState: true
     });
 
     console.log(self.$f7router);
