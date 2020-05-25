@@ -29,6 +29,11 @@
   --f7-input-outline-height: 30px;
   --f7-input-outline-border-color: #C0C4CC;
 
+  /* Navbar */
+  /* --f7-navbar-bg-color: var(--f7-theme-color);
+  --f7-navbar-bg-color-rgb: var(--f7-theme-color); */
+  --f7-navbar-text-color: #ffffff;
+
   /* Skeleton */
   --f7-skeleton-color: #ccc;
 
@@ -98,9 +103,8 @@
   
 }
 
-.navbar {
-  background-color: #298ccf;
-  color: #ffffff;
+.ios-translucent-bars .navbar-bg {
+  background-color: #298ccf !important;
 }
 
 .color-red {

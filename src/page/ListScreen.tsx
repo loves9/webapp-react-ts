@@ -1,7 +1,7 @@
 import * as React from "react";
 import EnhancedComponent from "./component/HOC";
 // import Hello from "./component/Hello";
-import { Page, List, ListItem, Button } from "framework7-react";
+import { Page, List, ListItem, Button, Navbar } from "framework7-react";
 // import logo from "../logo.svg";
 import { Tabs, Badge } from "antd-mobile";
 import HttpBusinessRequest from "./api/api";
@@ -80,8 +80,11 @@ class ListScreen extends React.Component<
         onPageBeforeIn={this.onPageBeforeIn.bind(this)}
         onPageInit={this.onPageInit.bind(this)}
       >
-        {/* <div className="hr-block-small"></div>
-        <this.ItemList data={this.state.systeData}></this.ItemList> */}
+        <Navbar
+          title="My App"
+          backLink="Back"
+          color="white"
+        ></Navbar>
 
         <Tabs
           tabs={tabs}
@@ -108,6 +111,14 @@ class ListScreen extends React.Component<
               onClick={this.activateLasers.bind(this)}
             >
               Test
+            </Button>
+
+            <Button
+              style={{ width: "200px" }}
+              fill
+              onClick={this.backToRoot.bind(this)}
+            >
+              Back to Root
             </Button>
           </div>
           <div
@@ -182,6 +193,10 @@ class ListScreen extends React.Component<
     // });
 
     // console.log(this.props.$core)
+  }
+
+  backToRoot() {
+    this.$f7router?.back('/home/', {force: true})
   }
 
   private itemOnPressed(item) {

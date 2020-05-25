@@ -1,7 +1,7 @@
 import * as React from "react";
 import EnhancedComponent from "./component/HOC";
 // import HttpBusinessRequest from "./api/api";
-import { Page, Button } from "framework7-react";
+import { Page, Button, Navbar } from "framework7-react";
 
 class DetailScreen extends React.Component<any, {}> {
   // constructor(props) {
@@ -25,6 +25,11 @@ class DetailScreen extends React.Component<any, {}> {
         onPageBeforeIn={this.onPageBeforeIn.bind(this)}
         onPageInit={this.onPageInit.bind(this)}
       >
+        <Navbar
+          title="My App"
+          backLink="Back"
+          color="white"
+        ></Navbar>
         <div>
           <h1>Hello, world!</h1>
           <div>{this.props.$core.Utils.formatAmount(3284698)}</div>
@@ -32,6 +37,10 @@ class DetailScreen extends React.Component<any, {}> {
 
         <Button fill onClick={this.buttonClick.bind(this)}>
           BACK
+        </Button>
+
+        <Button fill onClick={this.next.bind(this)}>
+          下一页
         </Button>
       </Page>
     );
@@ -41,6 +50,10 @@ class DetailScreen extends React.Component<any, {}> {
     // this.props.easyPop()
 
     this.$f7router?.back('/home/', {force: true})
+  }
+  next() {
+    this.props.easyPush('/list/', {})
+
   }
   onPageBeforeIn() {
     // do something on page before in

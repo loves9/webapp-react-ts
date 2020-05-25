@@ -1,7 +1,12 @@
 import * as React from "react";
 import EnhancedComponent from "./component/HOC";
 // import Hello from "./component/Hello";
-import { Page, List, ListItem } from "framework7-react";
+import {
+  Page,
+  List,
+  ListItem,
+  Navbar
+} from "framework7-react";
 // import logo from "../logo.svg";
 import { Grid } from "antd-mobile";
 import HttpBusinessRequest from "./api/api";
@@ -77,6 +82,12 @@ class HomeScreen extends React.Component<
         onPageBeforeIn={this.onPageBeforeIn.bind(this)}
         onPageInit={this.onPageInit.bind(this)}
       >
+        <Navbar
+          title="My App"
+          backLink="Back"
+          color="white"
+          onBackClick={this.onBackClick.bind(this)}
+        ></Navbar>
         <Grid
           data={data}
           activeStyle={false}
@@ -96,25 +107,21 @@ class HomeScreen extends React.Component<
     // console.log("onPageInit");
   }
 
-  activateLasers() {
-    // console.log("bbbbbbbbbbb", window.GlobalReactObject);
+  onBackClick() {
+    console.log("bbbbbbbbbbb");
     // console.log("ccccc", this);
-
     // window.GlobalReactObject.$f7.preloader.show();
-
     // this.$f7router?.navigate("/detail/", {
     //   props: {}
     // });
-
     // this.setState({
     //   date: "2019-02-10"
     // });
-
     // console.log(this.props.$core)
   }
 
   private itemOnPressed(index) {
-    console.log(index)
+    console.log(index);
     this.props.easyPush("/list/", {
       from: "list",
       aaa: {
@@ -139,7 +146,6 @@ class HomeScreen extends React.Component<
       this.setState({
         systeData: data.data,
       });
-
     };
     request.error = (data, status, xhr) => {
       console.log("fff", JSON.stringify(data));
